@@ -1,0 +1,66 @@
+FROM ubuntu:24.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+ARG GO_VERSION=1.22.5
+ARG NODE_MAJOR=22
+ARG PNPM_VERSION=9.1.0
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        build-essential \
+        ca-certificates \
+        curl \
+        git \
+        gnupg \
+        libappindicator3-dev \
+        libgdk-pixbuf-2.0-0 \
+        libgtk-3-0 \
+        libgtk-3-dev \
+        libwebkit2gtk-4.1-0 \
+        libwebkit2gtk-4.1-dev \
+        libx11-dev \
+        locales \
+        pkg-config \
+        python3 \
+        python3-pip \
+        sudo \
+        unzip \
+        wget \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN locale-gen en_US.UTF-8
+ENV LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8
+
+RUN curl -fsSL https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz -o /tmp/go.tgz \
+    && tar -C /usr/local -xzf /tmp/go.tgz \
+    && rm -f /tmp/go.tgz
+
+ENV GOROOT=/usr/local/go
+ENV GOPATH=/home/vscode/go
+ENV PATH=${PATH}:${GOROOT}/bin:${GOPATH}/bin
+
+RUN curl -fsSL https://deb.nodesource.com/setup_${NODE_MAJOR}.x | bash - \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends nodejs \
+    && npm install -g corepack@latest yarn@latest \
+    && corepack enable \
+    && corepack prepare pnpm@${PNPM_VERSION} --activate \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN useradd -ms /bin/bash vscode \
+    && usermod -aG sudo vscode \
+    && echo "vscode ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers.d/90-vscode
+
+RUN mkdir -p /workspaces ${GOPATH} \
+    && chown -R vscode:vscode /workspaces ${GOPATH}
+
+RUN /usr/local/go/bin/go install github.com/air-verse/air@latest \
+    && mv /root/go/bin/air /usr/local/bin/air \
+    && rm -rf /root/go
+
+USER vscode
+WORKDIR /workspaces
+
+CMD ["/bin/bash"]
