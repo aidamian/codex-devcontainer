@@ -7,8 +7,9 @@
   },
   // "remoteUser": "vscode",
   "runArgs": [
-    "--hostname", "r1dev", 
-    "--name", "r1dev"
+    "--hostname", "r1dev-t1", 
+    // make sure to change this name for each new container
+    "--name", "r1dev-template" 
 ],
   "postCreateCommand": "bash .devcontainer/post-create.sh"
 }
