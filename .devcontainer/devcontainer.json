@@ -2,13 +2,13 @@
   "name": "r1dev",
   "build": {
     // here you can specify which Dockerfile to use for the dev container
-    "dockerfile": "Dockerfile.ubuntu-py314",
+    "dockerfile": "Dockerfile.ubuntu-py314-root",
     "context": ".."
   },
-  "remoteUser": "vscode",
+  // "remoteUser": "vscode",
   "runArgs": [
     "--hostname", "r1dev", 
     "--name", "r1dev"
 ],
-  "postCreateCommand": "npm install -g @openai/codex"
+  "postCreateCommand": "bash .devcontainer/post-create.sh"
 }
