@@ -22,6 +22,8 @@ RUN apk update \
         xz \
         zlib-dev
 
+RUN curl -LsSf https://astral.sh/uv/install.sh | UV_INSTALL_DIR=/usr/local/bin sh
+
 RUN addgroup -S sudo \
     && adduser -D -h /home/vscode vscode \
     && addgroup vscode sudo \

@@ -1,6 +1,12 @@
 # codex-devcontainer
 A basic devcontainer that starts with minimal requirements for Python development with OpenAI Codex CLI support.
 
+## Python tooling
+
+- All Python-focused images now install [uv](https://github.com/astral-sh/uv) alongside CPython for faster, deterministic dependency management.
+- Prefer `uv pip install --system -r requirements.txt` when working with requirements files or `uv pip install <package>` for ad-hoc packages instead of the legacy `pip install` invocations.
+- Classic `pip` binaries remain available for compatibility, but new workflows and examples should favour `uv` going forward.
+
 ## Dockerfile variants
 
 - `.devcontainer/Dockerfile.ubuntu-py313`

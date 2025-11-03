@@ -22,6 +22,8 @@ RUN apk update \
         xz \
         zlib-dev
 
+RUN curl -LsSf https://astral.sh/uv/install.sh | UV_INSTALL_DIR=/usr/local/bin sh
+
 RUN mkdir -p /workspaces
 
 WORKDIR /workspaces
