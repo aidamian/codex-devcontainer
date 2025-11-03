@@ -27,6 +27,7 @@ RUN apt-get update \
         tk-dev \
         wget \
         xz-utils \
+        openssh-client \
         zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
 

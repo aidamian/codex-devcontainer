@@ -33,6 +33,7 @@ RUN apt-get update \
         locales \
         python3 \
         python3-pip \
+        openssh-client \
         sudo \
         unzip \
         wget \

@@ -7,6 +7,11 @@ A basic devcontainer that starts with minimal requirements for Python developmen
 - Prefer `uv pip install --system -r requirements.txt` when working with requirements files or `uv pip install <package>` for ad-hoc packages instead of the legacy `pip install` invocations.
 - Classic `pip` binaries remain available for compatibility, but new workflows and examples should favour `uv` going forward.
 
+## Git & SSH
+
+- Every image installs both Git and `openssh-client` so SSH-based remotes (e.g., `git@...`) work out of the box.
+- Configure your SSH keys as you normally would (e.g., `ssh-agent`, mounted secrets) and `git push` immediately from within the devcontainer.
+
 ## Dockerfile variants
 
 - `.devcontainer/Dockerfile.ubuntu-py313`

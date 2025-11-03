@@ -1,7 +1,7 @@
 # Repository Status
 - Primary focus: devcontainer definitions for OpenAI Codex CLI workflows across Ubuntu, Alpine, and slim Python bases.
 - Python images ship with CPython 3.13/3.14, Node.js 20, global `uv`, and Git preinstalled; Next.js and Go variants include Python tooling (pip/uv-ready) for auxiliary scripts.
-- All images include Git, satisfying Codex CLI prerequisites for fetching repositories and managing branches.
+- All images include Git and `openssh-client`, satisfying Codex CLI prerequisites for fetching repositories, managing branches, and pushing over SSH.
 - `post-create.sh` runs once to install `@openai/codex` globally via npm.
 
 # Operator Guidance

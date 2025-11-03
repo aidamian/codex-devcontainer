@@ -23,6 +23,7 @@ RUN apt-get update \
         locales \
         pkg-config \
         sudo \
+        openssh-client \
         tk-dev \
         wget \
         xz-utils \
