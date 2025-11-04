@@ -2,12 +2,12 @@
   "name": "r1dev",
   "build": {
     // here you can specify which Dockerfile to use for the dev container
-    "dockerfile": "Dockerfile.ubuntu-py314-root",
+    "dockerfile": "Dockerfile.ubuntu-py313-root",
     "context": ".."
   },
   // "remoteUser": "vscode",
   "runArgs": [
-    "--hostname", "r1dev-t1", 
+    "--hostname", "r1dev-template", 
     // make sure to change this name for each new container
     "--name", "r1dev-template" 
 ],
