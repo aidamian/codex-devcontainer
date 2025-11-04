@@ -38,6 +38,8 @@ RUN curl -LsSf https://astral.sh/uv/install.sh | UV_INSTALL_DIR=/usr/local/bin s
 # COPY ./cmds /usr/local/bin/
 # RUN chmod +x /usr/local/bin/*
 
+RUN npm install -g npm@latest @openai/codex
+
 
 WORKDIR /edge_node
 COPY . .

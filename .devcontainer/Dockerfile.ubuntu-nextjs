@@ -51,7 +51,8 @@ RUN useradd -ms /bin/bash vscode \
 RUN curl -fsSL https://deb.nodesource.com/setup_${NODE_MAJOR}.x | bash - \
     && apt-get update \
     && apt-get install -y --no-install-recommends nodejs \
-    && npm install -g corepack@latest yarn@latest \
+    && npm install -g npm@latest \
+    && npm install -g @openai/codex corepack@latest yarn@latest \
     && corepack enable \
     && corepack prepare pnpm@${PNPM_VERSION} --activate \
     && npm install -g @storybook/cli@latest eslint@latest stylelint@latest \

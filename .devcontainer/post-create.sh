@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
+set -euo pipefail
 
-npm install -g @openai/codex
-
-echo "Devcontainer setup complete."
+# Add optional post-create customization commands here.
+echo "post-create hook ready for custom steps."
